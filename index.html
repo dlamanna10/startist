@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>stArtist</title>
+    <script>
+        async function  convert() {
+            let url = document.getElementById('youtube_url').value;
+            let response = await fetch('/convert?url=${encodeURIComponent(url)}');
+            let data = await response.json();
+            document.getElementById('output').innerHTML = "Download: <a href='${data.mp3_url}'>MP3</a><br>BPM: ${data.bpm}<br>Key: ${data.key}";
+        }
+    </script>
+</head>
+<body>
+    <h1>YouTube to MP3 Converter</h1>
+    <input type = 'text' id = 'youtube_url' placeholder='Paste Youtube Link Here'>
+    <button onclick="convert()">Convert</button>
+    <div id="output"></div>
+</body>
+</html>
